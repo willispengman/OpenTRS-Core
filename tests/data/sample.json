@@ -1,0 +1,11 @@
+{
+    "camera": "Unknown FLIR",
+    "resolution": [
+        384,
+        288
+    ],
+    "emissivity": 0.98,
+    "object_distance_m": 2.0,
+    "reflected_temperature_k": 298.15,
+    "atmospheric_temperature_k": 293.15
+}

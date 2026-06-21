@@ -15,30 +15,30 @@ class RadiometricMetadata:
     """
     Radiometric metadata extracted from a FLIR FFF block.
 
-    Most fields are still under investigation and may change as
-    additional FLIR cameras are analyzed.
+    Some fields are confirmed, while others are still under
+    reverse engineering and may be renamed in future releases.
     """
 
-    # Confirmed / highly likely
+    # Environmental parameters
 
     emissivity: float | None = None
-
     object_distance_m: float | None = None
 
     reflected_temperature_k: float | None = None
-
     atmospheric_temperature_k: float | None = None
 
-    # Reverse engineering candidates
+    relative_humidity: float | None = None
+
+    # Reverse-engineered candidates
 
     unknown_0174: float | None = None
-
     unknown_017C: float | None = None
-
     unknown_0180: float | None = None
 
+    # Possible Planck constants
+
     possible_planck_r1: float | None = None
-
+    possible_planck_r2: float | None = None
     possible_planck_b: float | None = None
-
     possible_planck_f: float | None = None
+    possible_planck_o: float | None = None
