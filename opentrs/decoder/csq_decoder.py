@@ -18,11 +18,13 @@ JPEG_END_SIGNATURE = b"\xff\xd9"
 
 class CSQFrame:
     """
-    One extracted JPEG-LS frame from a CSQ file.
+    One extracted frame from a CSQ file.
     """
 
-    def __init__(self, index: int, jpeg_ls: bytes):
+    def __init__(self, index: int, block: bytes, jpeg_ls: bytes):
         self.index = index
+        self.block = block
+        self.header = block
         self.jpeg_ls = jpeg_ls
 
 
@@ -31,7 +33,7 @@ class CSQDecoder:
     Entry point for reading FLIR CSQ files.
     """
 
-    def __init__(self, filename: str):
+    def __init__(self, filename: str | Path):
         self.path = Path(filename)
 
     @property
@@ -48,9 +50,6 @@ class CSQDecoder:
         print(f"Opening CSQ file: {self.path}")
 
     def iter_frames(self) -> Iterator[CSQFrame]:
-        """
-        Iterate JPEG-LS frames embedded inside FFF/RTP blocks.
-        """
         if not self.exists():
             raise FileNotFoundError(f"CSQ file not found: {self.path}")
 
@@ -70,5 +69,6 @@ class CSQDecoder:
 
             yield CSQFrame(
                 index=block_index,
-                jpeg_ls=block[start : end + len(JPEG_END_SIGNATURE)],
+                block=block,
+                jpeg_ls=block[start:end + len(JPEG_END_SIGNATURE)],
             )
