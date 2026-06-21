@@ -1,0 +1,13 @@
+[project]
+name = "opentrs-core"
+version = "0.1.0"
+description = "Open Thermal Reference Space core library for radiometric thermal image workflows."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [
+  { name = "Willis Peng" }
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
