@@ -1,7 +1,7 @@
 """
 OpenTRS-Core
 
-Radiometric Metadata Model
+Radiometric Metadata
 
 Copyright (c) 2026 Willis Peng
 License: Apache-2.0
@@ -13,17 +13,32 @@ from dataclasses import dataclass
 @dataclass(slots=True)
 class RadiometricMetadata:
     """
-    Radiometric metadata required for temperature conversion.
+    Radiometric metadata extracted from a FLIR FFF block.
+
+    Most fields are still under investigation and may change as
+    additional FLIR cameras are analyzed.
     """
 
-    emissivity: float | None = None
-    object_distance_m: float | None = None
-    reflected_temperature_c: float | None = None
-    atmospheric_temperature_c: float | None = None
-    relative_humidity: float | None = None
+    # Confirmed / highly likely
 
-    planck_r1: float | None = None
-    planck_r2: float | None = None
-    planck_b: float | None = None
-    planck_f: float | None = None
-    planck_o: float | None = None
+    emissivity: float | None = None
+
+    object_distance_m: float | None = None
+
+    reflected_temperature_k: float | None = None
+
+    atmospheric_temperature_k: float | None = None
+
+    # Reverse engineering candidates
+
+    unknown_0174: float | None = None
+
+    unknown_017C: float | None = None
+
+    unknown_0180: float | None = None
+
+    possible_planck_r1: float | None = None
+
+    possible_planck_b: float | None = None
+
+    possible_planck_f: float | None = None
